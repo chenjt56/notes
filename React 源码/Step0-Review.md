@@ -58,7 +58,7 @@ container.appendChild(node);
 **为避免混淆，我将使用“元素”来指代 React 元素，并使用“节点”来指代 DOM 元素。**
 1. 创建一个节点使用这个对象的 type 属性，在这个例子中是 h1。
 2. 将所有的 props 属性分配给这个节点，这里只有一个 title 属性。
-3. 创建孩子节点。这里只需要创建一个文本节点。使用 textNode 而不是设置 innerText 将允许我们以后以相同的方式对待所有元素。另请注意，我们如何像设置 h 1标题一样设置 nodeValue，就像字符串中带有 props 一样：`{nodeValue：“hello”}` 。
+3. 创建孩子节点。这里只需要创建一个文本节点。使用 textNode 而不是设置 innerText 将允许我们以后以相同的方式对待所有元素。另请注意，我们如何像设置 h1 标题一样设置 nodeValue，就像字符串中带有 props 一样：`{nodeValue：“hello”}` 。
 4. 最后将 textNode 添加到 h1 节点，将 h1 节点添加到 container。
 
 现在我们就有了与之前相同的 app ，但是我们没有使用 React。

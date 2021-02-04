@@ -16,11 +16,11 @@ ReactDOM.render(element, container);
 
 让我们把 JSX 转化成 JS，以便于我们可以看清晰 `createElement` 的调用。
 ```js
-const element = React.createElemt(
+const element = React.createElement(
   "div",
   {id: "foo" },
-  React.createElemt("a", null, "bar"),
-  React.createElemt("b")
+  React.createElement("a", null, "bar"),
+  React.createElement("b")
 );
 const container = document.getElementById("root");
 ReactDOM.render(element, container);
