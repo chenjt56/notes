@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<!-- 
+  异步加载图片，通过回调函数得知图片加载的结果
+ -->
+<body>
+  <script>
+    function loadImag(src, resolve, reject) {
+      let img = new Image();
+      img.src = src;
+      img.onload = () => {
+        resolve(img);
+      }
+      img.onerror = reject;
+    }
+    loadImag('img/img1.png', (img) => {
+        console.log("图片加载成功");
+        document.body.appendChild(img);
+      },
+      () => {
+        console.log("图片加载失败");
+      });
+  </script>
+</body>
+
+</html>

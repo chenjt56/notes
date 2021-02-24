@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>任务队列</title>
+</head>
+
+<body>
+  <script src="../14.使用 Promise 封装 AJAX 请求/ajax.js"></script>
+  <script>
+    // 使用 map 实现任务队列
+    function queueMap(num) {
+      let promise = Promise.resolve("开始");
+      num.map(value => {
+        promise = promise.then(_ => {
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              console.log(value);
+              resolve();
+            }, 1000);
+          })
+        })
+      })
+    }
+
+    queueMap([1, 2, 3, 4])
+
+    // 使用 reduce 实现任务队列
+    function queueReduce(num) {
+      num.reduce((promise, n) => {
+        return promise.then(_ => {
+          return new Promise(resolve => {
+            setTimeout(() => {
+              console.log(n);
+              resolve();
+            }, 1000);
+          })
+        })
+      }, Promise.resolve())
+    }
+    queueReduce([1, 2, 3, 4]);
+    
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function load(src, resolve) {
+      let script = document.createElement('script');
+      script.src = src;
+      script.onload = resolve;
+      document.body.appendChild(script);
+    }
+
+    /* 这样不能保证 a.js 与 b.js 的执行顺序，谁请求完成得早谁就先执行
+    load('a.js', () => {
+      a();
+    });
+    load('b.js', () => {
+      b();
+    })
+    */
+
+    // 通过回调函数的嵌套，保证执行顺序
+    // load('a.js', () => {
+    //   a();
+    //   load('b.js', () => {
+    //     b();
+    //   })
+    // })
+
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = () => {
+          resolve(script);
+        }
+        script.onerror = reject;
+        document.body.appendChild(script);
+      });
+    }
+
+    loadScript('a.js')
+      .then(value => {
+        console.log(value);
+        a();
+        return loadScript('b.js');
+      })
+      .then(value => {
+        console.log(value);
+        b();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  </script>
+</body>
+
+</html>
