@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="counter">
+    Counter: {{counter}}
+    <br>
+    <span v-bind:title="message">
+      <!-- 
+        attribute v-bind 被称为指令
+        意义就是： 将 attribute “title” 与  property “message” 进行绑定
+       -->
+      鼠标悬停几秒钟查看此处动态绑定的提示信息！
+    </span>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const Counter = {
+      data() {
+        return {
+          counter: 0,
+          message: 'You loaded this page on ' + new Date().toLocaleString()
+        }
+      },
+      mounted() {
+        setInterval(() => {
+          this.counter++;
+        }, 1000)
+      }
+    }
+
+    Vue.createApp(Counter).mount('#counter');
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="conditional-rendering">
+    <h3>条件</h3>
+    <span v-if="seen">现在你看到我了</span>
+    <button v-on:click="hidden">显示/隐藏</button>
+    <hr>
+    <h3>循环</h3>
+    <ol>
+      <li v-for="todo in todos">
+        {{ todo.text }}
+      </li>
+    </ol>
+  </div>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const ConditionalRendering = {
+      data() {
+        return {
+          seen: true,
+          todos: [{
+              text: 'Learn JavaScript'
+            },
+            {
+              text: 'Learn Vue'
+            },
+            {
+              text: 'Build something awesome'
+            }
+          ]
+        }
+      },
+      methods: {
+        hidden() {
+          this.seen = !this.seen
+        }
+      }
+    }
+
+    Vue.createApp(ConditionalRendering).mount('#conditional-rendering');
+  </script>
+</body>
+
+</html>
